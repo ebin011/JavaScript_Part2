@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Movie</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="pagination.css">
+	<link href="includes/css/index.css" rel="stylesheet">
+	
+</head>
+<body>
+	<nav class="navbar navbar-inverse navbar-fixed-top topbar" >
+		<div class="container-fluid">
+	<!--Menu in small window -------------------------------------ii-->	
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#MobNav">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>>
+			<div class="col-lg-12">
+			<a class="navbar-brand topbarBrand" href="/"><img src="images/logo.png" alt="Logo not there"></a>
+			<div class="collapse navbar-collapse" id="MobNav" style="z-index:10">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="#">Home</a></li>
+					<li ><a href="gallery.html">Gallery</a></li>
+					<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Services<span class="caret"></span></a>
+	<!--Drop down Window -------------------------------------ii-->
+						<ul class="dropdown-menu">
+							<li><a href="#">Supporting services</a></li>
+							<li><a href="#">Provisioning services</a></li>
+							<li><a href="#">Regulating services</a></li>
+							<li><a href="#">Cultural services</a></li>
+						</ul>
+					</li>
+
+				</ul>
+				
+				<!--<form class="navbar-form navbar-left ">
+					<input type="text" name="search" class="form-control" placeholder="Search your content..." id="search_box">
+					<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+				</form>-->
+				
+				<ul class="nav navbar-nav navbar-right mob_left" style="z-index:8">
+					<li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+					<li><a href="#modalLogin" data-toggle="modal"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+					
+					
+					
+				</ul>
+			</div>
+			</div>
+		</div>
+	</nav>
+	<div class="container" style="margin-top:80px" >
+		<div class="row">
+			
+			
+			<div class="btn-group">
+  <button type="button" class="btn btn-primary btn-lg" id="btnSearch" onclick="displaySearch()">Search</button>
+  <button type="button" class="btn btn-primary btn-lg" id="btnAdd" onclick="displayAdd()">Add</button>
+  <button type="button" class="btn btn-primary btn-lg" id="btnViewAll" onclick="displayAllMovies()">View All</button>
+  <button type="button" class="btn btn-primary btn-lg" id="btnUpdate" onclick="displayDelete()">Update/Delete</button>
+ <!--  <button type="button" class="btn btn-primary btn-lg" id="btnDelete" onclick="displayDelete()">Delete</button> -->
+</div>
+			<div class="panel-group" id="accordion" style="display: none;">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Search Base Year</a>
+        </h4>
+      </div>
+      <div id="collapse1" class="panel-collapse collapse in">
+        <div class="panel-body">
+        	<div class="form-group">
+			  <label for="usr">Year:</label>
+  				<input type="text" class="form-control" id="mvYear">
+  				<button type="button" class="btn btn-info search" onclick="displayMovies()">Search</button>
+			</div>
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Search Base Film Type</a>
+        </h4>
+      </div>
+      <div id="collapse2" class="panel-collapse collapse">
+        <div class="panel-body">
+        	<label class="radio-inline"><input type="radio" id="type1" value="Horror" name="movieType" onclick="displayMovieType()">Horror</label>
+			<label class="radio-inline"><input type="radio" id="type2" value="funny" name="movieType" onclick="displayMovieType()">Funny</label>
+			<label class="radio-inline"><input type="radio" id="type3" value="classic" name="movieType" onclick="displayMovieType()">Classic</label>
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Search Base Film Name</a>
+        </h4>
+      </div>
+      <div id="collapse3" class="panel-collapse collapse">
+        <div class="panel-body">
+        	<div class="form-group">
+			  <label for="usr">Name:</label>
+  				<input type="text" class="form-control" id="mvName">
+  				<button type="button" class="btn btn-info search" onclick="displayMovieName()">Search</button>
+			</div>
+        </div>
+      </div>
+    </div>
+  </div> 
+
+
+  <div align="center" id="addDetails" style="display: none;">
+  	<div class="form-group">
+  		<label >Fill the details</label><br>
+  		<input type="text" class="form-control" id="movieId" placeholder="Movie ID">
+  		<input type="text" class="form-control" id="movieYear" placeholder="Movie Relase Year">	
+  		
+  		<input type="text" class="form-control" list="types" name="browser" placeholder="Movie Type">
+  		<datalist id="types">
+  			<option value="Funny">
+  			<option value="Horror">
+  			<option value="Classic">
+  		</datalist>
+  		<input type="text" class="form-control" id="director" placeholder="Director Name">
+  		<input type="text" class="form-control" id="movieName" placeholder="Movie Name">
+  		<button type="button" class="btn btn-info add" onclick="addMovieDetails()">Add</button>
+
+  	</div>
+
+  	<!-- <div  class="col-lg-9 col-md-9 col-sm-9 col-xs-1 searchPart ">
+				<label>Enter the Year</label>
+				<input class="form-control input-lg" placeholder="Search Your Movie Name"  type="text" id="movie">
+				</div><br>
+				<div class="col-xs-3 col-md-3 col-sm-3 col-xs-12 searchPart">
+				<button type="button" class="btn btn-primary btn-lg"  onclick="displayMovies()" id="search"  >Search</button>
+				</div>
+
+				<div  class="col-lg-9 col-md-9 col-sm-9 col-xs-12 searchPart">
+				<label>Select the movie type</label>
+				<form>
+				<input type="radio" name="gender" value="Horror" checked> Horror
+					<input type="radio" name="gender" value="Funny"> Funny
+					<input type="radio" name="gender" value="classic"> classic
+				</form>
+				</div> -->
+				<!-- <div class="col-xs-3 col-md-3 col-sm-3 col-xs-12">
+				<button type="button" class="btn btn-primary btn-lg"  onclick="displayMovies(0,1)" id="search"  >Search</button>
+				</div> -->
+			</div>
+
+			<div align="center" id="updateDetails" style="display:none">
+				<div class="form-group">
+					<label for="mvIdLabel">ID:</label>
+					<input type="text" class="form-control" id="mvDelId">
+					<button type="button" class="btn btn-info search" onclick="getDetails()">Search</button> 
+				</div>
+			</div>
+			
+			 <!-- Modal -->
+			  <div class="modal fade" id="myModal" role="dialog">
+			    <div class="modal-dialog">
+			    
+			      <!-- Modal content-->
+			      <div class="modal-content">
+			        <div class="modal-header">
+			          <button type="button" class="close" data-dismiss="modal">&times;</button>
+			          <h4 class="modal-title">	Edit Your Details </h4>
+			        </div>
+			        <div class="modal-body">
+			        <input type="text" class="form-control" id="moviegetId" placeholder="Movie ID">
+			        	<input type="text" class="form-control" id="moviegetYear" placeholder="Movie Relase Year">	
+
+			        	<input type="text" id="moviegetType" class="form-control" list="types" name="browser" placeholder="Movie Type">
+			        	<datalist id="types">
+			        		<option value="Funny">
+			        			<option value="Horror">
+			        				<option value="Classic">
+			        				</datalist>
+			        				<input type="text" class="form-control" id="getdirector" placeholder="Director Name">
+			        				<input type="text" class="form-control" id="moviegetName" placeholder="Movie Name">
+			        				<input type="hidden" class="form-control" id="tblId" placeholder="Movie Name">
+			        				<button type="button" class="btn btn-info add" data-dismiss="modal" onclick="updateJson()">
+			        				Update</button>
+			        </div>
+			        <div class="modal-footer">
+			          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			        </div>
+			      </div>
+			      
+			    </div>
+			  </div>
+							
+			<h2 id="info" style="display:none">Movie Details</h2>
+			<!--<ol id="movieList">list</ol>-->
+			<ul class="pagination" id="pageTab" align="center" style="visibility:hidden">
+			   <!-- <li id="previous" ><a href="#display"> << previous </a></li>
+			    <li id="one"><a href="#display">1</a></li>
+			    <li id="next" ><a href="#display"> next >> </a></li>-->
+			 </ul>
+			<div id="display" >
+				
+			</div>
+			<ul class="pagination" id="pageTab" style="visibility:hidden">
+			   <!-- <li id="previous" ><a href="#display"> << previous </a></li>
+			    <li id="one"><a href="#display">1</a></li>
+			    <li id="next" ><a href="#display"> next >> </a></li>
+			 </ul>-->
+			</div>
+	</div>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<!-- <script type="text/javascript" src="includes/js/simplePagination.js"></script> -->
+	<script type="text/javascript" src="pagination.js"></script>
+	<script src="includes/js/movieScript.js"></script>
+
+</body>
+</html>
